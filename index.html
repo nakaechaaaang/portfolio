@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ひとし | AI顧問ポートフォリオ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ナビゲーション -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="#hero" class="nav-logo">Hitoshi<span>.</span></a>
+      <ul class="nav-list" id="nav-list">
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#works" class="nav-link">Works</a></li>
+        <li><a href="#tools" class="nav-link">Tools</a></li>
+        <li><a href="#contact" class="nav-link contact-btn">Contact</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="メニューを開く">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ヒーローセクション -->
+    <section class="hero" id="hero">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <p class="hero-label">AI Consultant</p>
+          <h1 class="hero-title">AIで、<br>ビジネスを<br><span class="accent">加速する。</span></h1>
+          <p class="hero-desc">Claude・Gemini・Manusを駆使し、<br>業務自動化からコンテンツ制作まで<br>AIの力を実装します。</p>
+          <div class="hero-cta">
+            <a href="#works" class="btn btn-primary">実績を見る</a>
+            <a href="#contact" class="btn btn-outline">お問い合わせ</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <div class="hero-image-wrap">
+            <img src="images/profile.jpg" alt="ひとし プロフィール写真" />
+          </div>
+          <div class="hero-badge">
+            <span class="badge-icon">🤖</span>
+            <div>
+              <p class="badge-title">AI Automation</p>
+              <p class="badge-sub">5ヶ月で10万人達成</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-scroll">
+        <span></span>
+      </div>
+    </section>
+
+    <!-- About セクション -->
+    <section class="about section" id="about">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-label">About Me</p>
+          <h2 class="section-title">自己紹介</h2>
+        </div>
+        <div class="about-grid">
+          <div class="about-profile">
+            <img src="images/profile.jpg" alt="ひとし プロフィール" class="about-photo" />
+            <div class="about-name-block">
+              <h3 class="about-name">ひとし</h3>
+              <p class="about-role">AI顧問 / AIエンジニア</p>
+            </div>
+          </div>
+          <div class="about-content">
+            <div class="about-bio">
+              <p>Claude・Gemini・Manusなど最先端のAIツールを活用し、業務自動化・コンテンツ制作・Webアプリ開発まで幅広く手がけるAI顧問。</p>
+              <p>AIアニメ動画制作の自動化ワークフローを独自に構築し、YouTubeチャンネルを5ヶ月で10万人規模に成長させた実績を持つ。「ツールを組み合わせて実用的なシステムを作る」という一貫したアプローチで、クライアントのビジネス課題を解決している。</p>
+            </div>
+            <div class="skills-section">
+              <h4 class="skills-title">スキルセット</h4>
+              <div class="skills-grid">
+                <div class="skill-item">
+                  <div class="skill-header">
+                    <span class="skill-name">AI活用・プロンプト設計</span>
+                    <span class="skill-pct">95%</span>
+                  </div>
+                  <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+                </div>
+                <div class="skill-item">
+                  <div class="skill-header">
+                    <span class="skill-name">業務自動化（GAS / Make）</span>
+                    <span class="skill-pct">90%</span>
+                  </div>
+                  <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+                </div>
+                <div class="skill-item">
+                  <div class="skill-header">
+                    <span class="skill-name">Webアプリ開発（React）</span>
+                    <span class="skill-pct">80%</span>
+                  </div>
+                  <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+                </div>
+                <div class="skill-item">
+                  <div class="skill-header">
+                    <span class="skill-name">動画・コンテンツ制作</span>
+                    <span class="skill-pct">85%</span>
+                  </div>
+                  <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+                </div>
+                <div class="skill-item">
+                  <div class="skill-header">
+                    <span class="skill-name">SNS運用・マーケティング</span>
+                    <span class="skill-pct">75%</span>
+                  </div>
+                  <div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Works セクション -->
+    <section class="works section" id="works">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-label">Works</p>
+          <h2 class="section-title">実績一覧</h2>
+        </div>
+        <div class="works-grid">
+
+          <article class="work-card">
+            <div class="work-thumb">
+              <img src="images/project1.jpg" alt="AIアニメ動画制作自動化" />
+              <span class="work-tag">動画制作 / AI自動化</span>
+            </div>
+            <div class="work-body">
+              <h3 class="work-title">AIアニメ動画制作の自動化ワークフロー</h3>
+              <p class="work-desc">Claude API・Midjourney・にじボイスAPIを組み合わせた動画制作ワークフローを構築。台本生成から音声合成・画像生成まで全工程を自動化し、1分動画を5分で出力。YouTubeチャンネルを5ヶ月で10万人規模に成長させた。</p>
+              <div class="work-tags">
+                <span>Claude API</span><span>Midjourney</span><span>NijiVoice</span><span>Python</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="work-card">
+            <div class="work-thumb">
+              <img src="images/project2.jpg" alt="GAS×AI業務自動化" />
+              <span class="work-tag">業務自動化 / GAS</span>
+            </div>
+            <div class="work-body">
+              <h3 class="work-title">Google Apps Script × AI 業務自動化システム</h3>
+              <p class="work-desc">Googleフォームで受け取った日報をGemini APIで自動評価・ナレッジ蓄積するシステムを構築。Googleドライブへのファイルアップロードを監視して自動メール通知するGASシステムも開発し、クライアントの業務効率を大幅に改善した。</p>
+              <div class="work-tags">
+                <span>Google Apps Script</span><span>Gemini API</span><span>Drive API v3</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="work-card">
+            <div class="work-thumb">
+              <img src="images/project3.jpg" alt="確定申告Webアプリ" />
+              <span class="work-tag">Webアプリ開発</span>
+            </div>
+            <div class="work-body">
+              <h3 class="work-title">確定申告サポートWebアプリ</h3>
+              <p class="work-desc">レシート撮影・経費入力・CSV書き出し機能を備えたWebアプリを開発。AIによるレシートの自動読み取りと経費カテゴリの自動分類を実装し、フリーランスの確定申告作業を大幅に効率化した。</p>
+              <div class="work-tags">
+                <span>React</span><span>AI OCR</span><span>CSV出力</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="work-card">
+            <div class="work-thumb">
+              <img src="images/project4.jpg" alt="介護施設比較ツール" />
+              <span class="work-tag">Webアプリ開発</span>
+            </div>
+            <div class="work-body">
+              <h3 class="work-title">介護施設比較ツール「快住アシスト」</h3>
+              <p class="work-desc">札幌市全区60施設のデータを網羅したReactアプリを開発。地図表示・フィルタリング・施設詳細比較機能を実装し、家族が最適な介護施設を選べるよう支援するツールを構築した。</p>
+              <div class="work-tags">
+                <span>React</span><span>地図API</span><span>データ設計</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="work-card">
+            <div class="work-thumb">
+              <img src="images/project5.jpg" alt="れおファミリーYouTubeチャンネルディレクション" />
+              <span class="work-tag">YouTube / チャンネル運営</span>
+            </div>
+            <div class="work-body">
+              <h3 class="work-title">「れおファミリー」YouTubeチャンネルディレクション</h3>
+              <p class="work-desc">AIアニメ動画チャンネル「れおファミリー」のコンテンツディレクションを担当。Claude API・Midjourney・にじボイスを活用した動画制作ワークフローを構築し、チャンネル登録者数9.68万人を達成。企画・構成・品質管理まで一貫してディレクション。</p>
+              <div class="work-tags">
+                <span>YouTube</span><span>コンテンツ戦略</span><span>AI動画制作</span><span>ディレクション</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="work-card">
+            <div class="work-thumb">
+              <img src="images/project6.jpg" alt="AIセミナー・コンテンツ制作" />
+              <span class="work-tag">セミナー / 教材制作</span>
+            </div>
+            <div class="work-body">
+              <h3 class="work-title">AIセミナー登壇・教材コンテンツ制作</h3>
+              <p class="work-desc">Gemini活用講座の教材をPDFとして制作（初心者向けに全面リライト）。AIウェビナー登壇のための原稿・スライド資料作成も担当。参加者から「わかりやすい」と高評価を獲得した。</p>
+              <div class="work-tags">
+                <span>Gemini</span><span>スライド制作</span><span>教材設計</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Tools セクション -->
+    <section class="tools section" id="tools">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-label">Tools</p>
+          <h2 class="section-title">使用可能ツール</h2>
+        </div>
+        <div class="tools-grid">
+
+          <div class="tool-card">
+            <div class="tool-icon manus-icon">
+              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="20" cy="20" r="18" fill="#2a9d5c" opacity="0.15"/>
+                <path d="M12 28V14l8-4 8 4v14l-8 4-8-4z" stroke="#2a9d5c" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M20 10v18M12 14l8 4 8-4" stroke="#2a9d5c" stroke-width="2"/>
+              </svg>
+            </div>
+            <h3 class="tool-name">Manus</h3>
+            <p class="tool-desc">自律型AIエージェント。複雑なタスクを自動実行し、Webアプリ開発・データ分析・コンテンツ制作まで幅広く対応。</p>
+            <ul class="tool-features">
+              <li>自律的なタスク実行</li>
+              <li>Webアプリ・ツール開発</li>
+              <li>データ分析・レポート作成</li>
+            </ul>
+          </div>
+
+          <div class="tool-card tool-card--featured">
+            <div class="tool-icon claude-icon">
+              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="20" cy="20" r="18" fill="#2a9d5c" opacity="0.15"/>
+                <path d="M20 8C13.373 8 8 13.373 8 20s5.373 12 12 12 12-5.373 12-12S26.627 8 20 8z" stroke="#2a9d5c" stroke-width="2"/>
+                <path d="M15 20h10M20 15v10" stroke="#2a9d5c" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3 class="tool-name">Claude</h3>
+            <p class="tool-desc">Anthropic製の高性能LLM。高品質な文章生成・コード作成・論理的推論に優れ、API連携による業務自動化の中核として活用。</p>
+            <ul class="tool-features">
+              <li>高品質なコンテンツ生成</li>
+              <li>コード生成・レビュー</li>
+              <li>API連携による自動化</li>
+            </ul>
+          </div>
+
+          <div class="tool-card">
+            <div class="tool-icon gemini-icon">
+              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="20" cy="20" r="18" fill="#2a9d5c" opacity="0.15"/>
+                <path d="M20 8l3.5 8.5L32 20l-8.5 3.5L20 32l-3.5-8.5L8 20l8.5-3.5L20 8z" stroke="#2a9d5c" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3 class="tool-name">Gemini</h3>
+            <p class="tool-desc">Google製のマルチモーダルAI。Google Workspaceとの深い連携により、スプレッドシート・ドキュメントの自動化に特に強みを発揮。</p>
+            <ul class="tool-features">
+              <li>Google Workspace連携</li>
+              <li>マルチモーダル処理</li>
+              <li>GAS連携による自動化</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact セクション -->
+    <section class="contact section" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-label">Contact</p>
+          <h2 class="section-title">お問い合わせ</h2>
+          <p class="section-desc">AIの導入・業務自動化・Webアプリ開発など、お気軽にご相談ください。</p>
+        </div>
+        <div class="contact-wrap">
+          <form class="contact-form" id="contact-form" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">お名前 <span class="required">*</span></label>
+                <input type="text" id="name" name="name" placeholder="山田 太郎" required />
+                <span class="error-msg" id="name-error"></span>
+              </div>
+              <div class="form-group">
+                <label for="email">メールアドレス <span class="required">*</span></label>
+                <input type="email" id="email" name="email" placeholder="example@email.com" required />
+                <span class="error-msg" id="email-error"></span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="subject">件名</label>
+              <input type="text" id="subject" name="subject" placeholder="AI導入のご相談" />
+            </div>
+            <div class="form-group">
+              <label for="message">メッセージ <span class="required">*</span></label>
+              <textarea id="message" name="message" rows="6" placeholder="ご相談内容をご記入ください..." required></textarea>
+              <span class="error-msg" id="message-error"></span>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">送信する</button>
+            <div class="form-success" id="form-success">
+              <span>✓</span> メッセージを送信しました。近日中にご連絡いたします。
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p class="footer-logo">Hitoshi<span>.</span></p>
+      <p class="footer-copy">© 2026 Hitoshi. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
