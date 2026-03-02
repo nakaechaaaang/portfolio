@@ -596,6 +596,36 @@ ul { list-style: none; }
 }
 .form-success.show { display: block; }
 
+/* ===== Contact Google Form ===== */
+.contact-google-form {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 56px 48px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--gray-200);
+  text-align: center;
+}
+.contact-form-desc {
+  font-size: 1rem;
+  color: var(--gray-600);
+  line-height: 1.8;
+  margin-bottom: 36px;
+}
+.btn-contact-google {
+  font-size: 1rem;
+  padding: 16px 48px;
+  gap: 10px;
+}
+.btn-contact-google::before {
+  content: '✉';
+  font-size: 1.1rem;
+}
+.contact-note {
+  margin-top: 16px;
+  font-size: 0.8rem;
+  color: var(--gray-400);
+}
+
 /* ===== フッター ===== */
 .footer {
   background: var(--gray-900);
