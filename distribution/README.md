@@ -95,8 +95,31 @@ const VALID_DAYS   = 21;           // 公開期間。3週間=21日
 
 > ⚠️ この仕組みはブラウザ側（JavaScript）で動くため、**サーバー上のファイル自体は残ります**。
 > 元ファイルまで完全に消すには `surge teardown 好きな名前.surge.sh` でサイトごと削除してください。
-> 3週間後にこれを全自動で行いたい場合は、GitHub Actions などの定期実行（スケジュール）と
-> 組み合わせると完全自動化できます。
+
+### 🤖 サーバー上のファイルも全自動で削除する（GitHub Actions）
+
+「3週間後に `surge teardown` を全自動で実行してファイルごと消したい」場合は、
+同梱の GitHub Actions ワークフロー **`.github/workflows/auto-teardown.yml`** を使います。
+毎日1回チェックし、期限を過ぎていたら自動でサイトを削除します。
+
+**設定手順:**
+
+1. **トークンを取得**（手元のターミナルで実行）
+   ```bash
+   surge token
+   ```
+2. **GitHubに登録**（リポジトリの Settings → Secrets and variables → Actions）
+   - Secrets に `SURGE_LOGIN`（surgeのメール）と `SURGE_TOKEN`（上で取得したトークン）を追加
+3. **ワークフローを編集**（`.github/workflows/auto-teardown.yml` 上部の `env:`）
+   ```yaml
+   SURGE_DOMAIN: 'your-name.surge.sh'  # 公開したドメイン
+   PUBLISH_DATE: '2026-06-14'          # expiry.js と同じ公開日
+   VALID_DAYS: '21'                    # 公開期間（3週間）
+   ```
+4. **デフォルトブランチ（main）にこのファイルを置く**
+   （スケジュール実行は main ブランチ上のワークフローでのみ動きます）
+
+> 💡 設定前・未設定の場合は何もせず安全にスキップします。`workflow_dispatch` で手動実行して動作確認もできます。
 
 ---
 
