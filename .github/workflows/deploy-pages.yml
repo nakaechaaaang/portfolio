@@ -1,0 +1,51 @@
+# =====================================================================
+# 配布テンプレート（distribution/template）を GitHub Pages に公開する
+# ---------------------------------------------------------------------
+# 【初回だけ必要な設定】
+#   GitHub リポジトリ → Settings → Pages →
+#     「Build and deployment」の Source を「GitHub Actions」に変更
+#   その後このワークフローが main への push で自動公開します。
+#   公開URLは Actions の実行結果（environment: github-pages）に表示されます。
+#   例: https://<ユーザー名>.github.io/<リポジトリ名>/
+# =====================================================================
+name: Deploy portfolio to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'distribution/template/**'
+      - '.github/workflows/deploy-pages.yml'
+  workflow_dispatch:   # 手動実行も可能
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 同時実行を1つに制限（公開の競合を防止）
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload site (distribution/template)
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: distribution/template
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

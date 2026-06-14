@@ -678,6 +678,60 @@ ul { list-style: none; }
 .expiry-overlay .expiry-accent { color: #4ade80; }
 html.expired, body.expired { overflow: hidden; }
 
+/* ===== パスワードゲート（簡易ロック） ===== */
+.auth-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  background: linear-gradient(135deg, var(--gray-900) 0%, #0c2a1a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.auth-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 40px 32px;
+  width: 100%;
+  max-width: 360px;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+}
+.auth-card .auth-icon { font-size: 2.5rem; margin-bottom: 12px; }
+.auth-card h1 { font-size: 1.25rem; color: var(--gray-900); margin-bottom: 8px; }
+.auth-card p { font-size: 0.85rem; color: var(--gray-600); margin-bottom: 20px; }
+.auth-card input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: var(--font-jp);
+  outline: none;
+  margin-bottom: 12px;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.auth-card input:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(42,157,92,0.12);
+}
+.auth-card button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 50px;
+  background: var(--green);
+  color: var(--white);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+.auth-card button:hover { background: var(--green-dark); }
+.auth-card .auth-error { color: #ef4444; font-size: 0.8rem; min-height: 18px; margin: 8px 0 0; }
+body.locked { overflow: hidden; }
+
 /* ===== アニメーション ===== */
 .fade-in {
   opacity: 0;
