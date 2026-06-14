@@ -1,0 +1,61 @@
+# =====================================================================
+# 公開から3週間後に surge.sh のサイトを自動で完全削除するワークフロー
+# ---------------------------------------------------------------------
+# 毎日1回チェックし、公開日（PUBLISH_DATE）から VALID_DAYS が過ぎていたら
+# `surge teardown` を実行してサーバー上のファイルごと削除します。
+#
+# 【事前準備（GitHubリポジトリの Settings → Secrets and variables → Actions）】
+#  Secrets に登録:
+#    SURGE_LOGIN  … surge.sh のログインメールアドレス
+#    SURGE_TOKEN  … 手元で `surge token` を実行して表示されるトークン
+#  ※ このワークフローは「デフォルトブランチ（main）」に置かれている時だけ
+#     スケジュール実行されます。
+# =====================================================================
+name: Auto teardown surge site
+
+on:
+  schedule:
+    - cron: '0 18 * * *'   # 毎日 18:00 UTC（日本時間 翌3:00）にチェック
+  workflow_dispatch:        # 手動実行も可能（動作確認用）
+
+# ▼▼▼ ここを自分用に編集 ▼▼▼
+env:
+  SURGE_DOMAIN: ''            # 例: your-name.surge.sh （未設定なら何もしません）
+  PUBLISH_DATE: '2026-06-14'  # 公開した日（YYYY-MM-DD）。expiry.js と同じ日付に
+  VALID_DAYS: '21'            # 公開期間（日数）。3週間 = 21
+# ▲▲▲ ここまで ▲▲▲
+
+jobs:
+  teardown:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check expiry and teardown
+        env:
+          SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+        run: |
+          set -e
+
+          if [ -z "$SURGE_DOMAIN" ]; then
+            echo "SURGE_DOMAIN が未設定のためスキップします。"
+            exit 0
+          fi
+          if [ -z "$SURGE_LOGIN" ] || [ -z "$SURGE_TOKEN" ]; then
+            echo "SURGE_LOGIN / SURGE_TOKEN（Secrets）が未設定のためスキップします。"
+            exit 0
+          fi
+
+          expiry_ts=$(date -u -d "$PUBLISH_DATE +$VALID_DAYS days" +%s)
+          now_ts=$(date -u +%s)
+          echo "公開期限: $(date -u -d "@$expiry_ts" '+%Y-%m-%d %H:%M UTC')"
+          echo "現在時刻: $(date -u -d "@$now_ts" '+%Y-%m-%d %H:%M UTC')"
+
+          if [ "$now_ts" -lt "$expiry_ts" ]; then
+            echo "まだ公開期間内です。何もしません。"
+            exit 0
+          fi
+
+          echo "公開期限を過ぎました。$SURGE_DOMAIN を削除します。"
+          npm install --global surge
+          surge teardown "$SURGE_DOMAIN"
+          echo "削除が完了しました。"

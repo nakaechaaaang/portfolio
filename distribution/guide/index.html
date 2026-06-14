@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ポートフォリオサイト構築マニュアル</title>
+  <meta name="description" content="HTML/CSS/JSだけで作るポートフォリオサイトを、自分用にカスタマイズして surge.sh で無料公開するための手順書です。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="header">
+    <nav class="nav">
+      <a href="#top" class="nav-logo">Portfolio<span>.</span>Guide</a>
+      <div class="nav-links">
+        <a href="#prepare">準備</a>
+        <a href="#edit">編集</a>
+        <a href="#deploy">公開</a>
+        <a href="#expiry">期限</a>
+        <a href="#faq">FAQ</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <!-- ヒーロー -->
+    <section class="hero">
+      <div class="container">
+        <span class="hero-badge">Setup Manual</span>
+        <h1>ポートフォリオサイトを<br><span>自分用に作って公開する</span>マニュアル</h1>
+        <p>プログラミング未経験でもOK。テキストを書き換えて、無料の <strong>surge.sh</strong> にアップロードするだけで、あなただけのポートフォリオサイトが完成します。</p>
+      </div>
+    </section>
+
+    <!-- これは何 -->
+    <section class="section">
+      <div class="container">
+        <p class="section-label">Overview</p>
+        <h2>このサイトでできること</h2>
+        <p>このテンプレートは <strong>HTML・CSS・JavaScript</strong> だけで作られた1ページ完結のポートフォリオサイトです。サーバーやデータベースは不要で、ファイルをアップロードするだけで動きます。</p>
+        <ul class="bullets">
+          <li>プロフィール・自己紹介・スキル・実績・お問い合わせを掲載できる</li>
+          <li>スマホ／タブレット／PCすべてに自動対応（レスポンシブ）</li>
+          <li>お問い合わせは Google フォームに飛ばすだけなので、サーバー処理が不要</li>
+          <li>公開は <strong>surge.sh</strong> で完全無料。<code class="inline">あなたの名前.surge.sh</code> のようなURLがもらえる</li>
+        </ul>
+        <h3>ファイル構成</h3>
+        <pre><code>template/
+├─ index.html   <span class="cmt">← 文章・見出しを書き換えるメインファイル</span>
+├─ style.css    <span class="cmt">← 色やデザイン（基本そのままでOK）</span>
+├─ script.js    <span class="cmt">← アニメーションなどの動き（編集不要）</span>
+└─ images/      <span class="cmt">← 写真・実績画像を入れるフォルダ</span>
+   ├─ profile.svg
+   └─ project1.svg 〜 project6.svg</code></pre>
+      </div>
+    </section>
+
+    <!-- 準備するもの -->
+    <section class="section" id="prepare">
+      <div class="container">
+        <p class="section-label">Requirements</p>
+        <h2>準備するもの</h2>
+        <ul class="bullets">
+          <li><strong>テンプレート一式</strong>（<code class="inline">template</code> フォルダ）</li>
+          <li><strong>テキストエディタ</strong> … <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">VS Code</a> がおすすめ（無料）。メモ帳でも可</li>
+          <li><strong>Node.js</strong> … surge.sh で公開するために使います → <a href="https://nodejs.org/" target="_blank" rel="noopener">nodejs.org</a> から「LTS」版をインストール</li>
+          <li><strong>プロフィール写真・実績画像</strong>（あとで差し替え可）</li>
+          <li><strong>Googleアカウント</strong> … お問い合わせフォーム用（任意）</li>
+        </ul>
+        <div class="callout">
+          <span class="ico">💡</span>
+          <p>Node.js を入れると <code class="inline">npm</code> というコマンドも一緒に入ります。これを使って公開ツール（surge）をインストールします。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 手順 -->
+    <section class="section" id="edit">
+      <div class="container">
+        <p class="section-label">Steps</p>
+        <h2>サイトを自分用に編集する</h2>
+
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h3>テンプレートをコピーする</h3>
+            <p><code class="inline">template</code> フォルダを丸ごとコピーして、自分の作業用フォルダ（例：<code class="inline">my-portfolio</code>）として使いましょう。元データを残しておくと、やり直したいときに安心です。</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h3>index.html の文章を書き換える</h3>
+            <p><code class="inline">index.html</code> をエディタで開きます。<code class="inline">&lt;!-- ✏️ 編集: … --&gt;</code> というコメントが編集ポイントの目印です。下の表のプレースホルダ（仮の文字）を自分の情報に置き換えてください。</p>
+            <div class="table-wrap">
+              <table>
+                <tr><th>場所</th><th>仮の文字（置き換える対象）</th><th>入れる内容</th></tr>
+                <tr><td>タブのタイトル</td><td><code>あなたの名前 | ポートフォリオ</code></td><td>サイト名・氏名</td></tr>
+                <tr><td>ロゴ／フッター</td><td><code>YourName</code></td><td>表示名（英字推奨）</td></tr>
+                <tr><td>ヒーロー</td><td><code>Your Title</code> / キャッチコピー</td><td>肩書き・キャッチコピー</td></tr>
+                <tr><td>バッジ</td><td><code>あなたの強み</code></td><td>アピールしたい実績</td></tr>
+                <tr><td>About</td><td><code>あなたの名前</code> / 自己紹介文</td><td>氏名・肩書き・経歴</td></tr>
+                <tr><td>スキル</td><td><code>スキル1〜5</code> / <code>95%</code></td><td>スキル名と習熟度</td></tr>
+                <tr><td>実績</td><td><code>実績タイトル1〜6</code> など</td><td>実績の内容・タグ</td></tr>
+                <tr><td>ツール</td><td><code>ツール1〜3</code></td><td>使えるツール紹介</td></tr>
+                <tr><td>お問い合わせ</td><td><code>YOUR_GOOGLE_FORM_URL</code></td><td>GoogleフォームのURL</td></tr>
+              </table>
+            </div>
+            <div class="callout warn">
+              <span class="ico">⚠️</span>
+              <p>スキルバーの数値は2か所あります。<code class="inline">&lt;span class="skill-pct"&gt;95%&lt;/span&gt;</code> と <code class="inline">style="width:95%"</code> の両方を同じ数字にそろえてください。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h3>実績の数を調整する</h3>
+            <p>実績カードは <code class="inline">&lt;article class="work-card"&gt; … &lt;/article&gt;</code> のかたまり1つ＝実績1件です。</p>
+            <ul class="bullets">
+              <li><strong>減らす</strong>：いらないカードを <code class="inline">&lt;article&gt;</code> から <code class="inline">&lt;/article&gt;</code> まで丸ごと削除</li>
+              <li><strong>増やす</strong>：カード1つをコピーして貼り付け、中身を書き換える</li>
+            </ul>
+            <p>ツールカード（<code class="inline">tool-card</code>）も同じ要領で増減できます。</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <h3>画像を差し替える</h3>
+            <p><code class="inline">images</code> フォルダの中身を自分の画像に置き換えます。同じファイル名にすればそのまま反映され、別名にする場合は <code class="inline">index.html</code> の <code class="inline">&lt;img src="…"&gt;</code> を書き換えます。</p>
+            <pre><code><span class="cmt">&lt;!-- 例：profile.svg を profile.jpg に変えた場合 --&gt;</span>
+&lt;img src=<span class="tok">"images/profile.jpg"</span> alt=<span class="tok">"プロフィール写真"</span> /&gt;</code></pre>
+            <div class="callout">
+              <span class="ico">🖼️</span>
+              <p>写真は1枚 <strong>500KB以内</strong> を目安に圧縮すると表示が速くなります。圧縮には <a href="https://squoosh.app/" target="_blank" rel="noopener">Squoosh</a> や <a href="https://tinypng.com/" target="_blank" rel="noopener">TinyPNG</a> が便利です。プロフィールは正方形、実績は横長（16:9）がきれいに収まります。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-body">
+            <h3>お問い合わせ用 Google フォームを用意する</h3>
+            <ol class="bullets">
+              <li><a href="https://forms.google.com/" target="_blank" rel="noopener">Googleフォーム</a> で「名前・メール・お問い合わせ内容」などの項目を作る</li>
+              <li>右上の「送信」→ リンクアイコン（🔗）→ URLをコピー</li>
+              <li><code class="inline">index.html</code> の <code class="inline">YOUR_GOOGLE_FORM_URL</code> をそのURLに置き換える</li>
+            </ol>
+            <p>フォームを使わない場合は、ボタンのリンク先をメール（<code class="inline">mailto:あなた@example.com</code>）やSNSのURLに変えてもOKです。</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">6</div>
+          <div class="step-body">
+            <h3>ローカルで表示を確認する</h3>
+            <p>公開する前に、手元で見た目をチェックしましょう。<code class="inline">index.html</code> をダブルクリックしてブラウザで開くだけでもOKです。文章・画像・リンクが正しいか確認してください。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 公開 -->
+    <section class="section" id="deploy">
+      <div class="container">
+        <p class="section-label">Deploy</p>
+        <h2>surge.sh で無料公開する</h2>
+        <p>準備ができたら、いよいよインターネットに公開します。ターミナル（Macは「ターミナル」、Windowsは「コマンドプロンプト」や「PowerShell」）を開いて、次のコマンドを順番に実行します。</p>
+
+        <h3>① surge をインストール（最初の1回だけ）</h3>
+        <pre><code>npm install --global surge</code></pre>
+
+        <h3>② 公開するフォルダに移動する</h3>
+        <pre><code><span class="cmt"># my-portfolio は自分の作業フォルダ名に置き換え</span>
+cd my-portfolio</code></pre>
+
+        <h3>③ 公開する</h3>
+        <pre><code>surge</code></pre>
+        <p>初回はメールアドレスとパスワードを聞かれるので、入力するとアカウントが作られます。続いて公開先（ドメイン）を聞かれます。</p>
+        <pre><code><span class="cmt">project: /Users/you/my-portfolio/</span>
+<span class="cmt">domain:  好きな名前.surge.sh</span>   <span class="cmt">← ここを自分用に入力してEnter</span></code></pre>
+        <p>「<strong>Success!</strong>」と表示されたら公開完了です。表示されたURL（例：<code class="inline">https://好きな名前.surge.sh</code>）にアクセスすると、あなたのサイトが世界中から見られます🎉</p>
+
+        <div class="callout">
+          <span class="ico">🔁</span>
+          <p><strong>更新するとき</strong>は、ファイルを編集したあと同じフォルダで <code class="inline">surge</code> を実行し、domain に<strong>同じドメイン名</strong>を入れるだけで上書き公開されます。<br>1行で済ませたいときは <code class="inline">surge ./ 好きな名前.surge.sh</code> でもOK。</p>
+        </div>
+        <div class="callout warn">
+          <span class="ico">⚠️</span>
+          <p><code class="inline">.surge.sh</code> ドメインは早い者勝ちです。すでに使われている名前は選べません。別の名前を試してください。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 自動公開期限 -->
+    <section class="section" id="expiry">
+      <div class="container">
+        <p class="section-label">Auto Expiry</p>
+        <h2>3週間で自動的に「期限切れ」にする</h2>
+        <p>このテンプレートには、<strong>公開から3週間が過ぎると自動でページを「期限切れ」表示に切り替える</strong>機能が入っています。期間限定の公開や、デモ用サイトに便利です。</p>
+
+        <h3>設定方法</h3>
+        <p><code class="inline">expiry.js</code> の先頭にある公開日を、実際に公開した日に書き換えるだけです。</p>
+        <pre><code>const PUBLISH_DATE = <span class="tok">'2026-06-14'</span>; <span class="cmt">← 公開した日（YYYY-MM-DD）</span>
+const VALID_DAYS   = <span class="tok">21</span>;           <span class="cmt">← 公開期間。3週間=21日</span></code></pre>
+        <p>期間を変えたいときは <code class="inline">VALID_DAYS</code> の数字を変更します（例：1週間なら <code class="inline">7</code>）。</p>
+
+        <h3>期限が過ぎると何が起こる？</h3>
+        <ul class="bullets">
+          <li>ページの内容（個人情報を含む）が画面から<strong>自動的に削除</strong>される</li>
+          <li>ブラウザに保存されたデータ（localStorage・Cookie・キャッシュ等）も<strong>自動で消去</strong>される</li>
+          <li>代わりに「このページの公開は終了しました」という画面が表示される</li>
+        </ul>
+
+        <div class="callout warn">
+          <span class="ico">⚠️</span>
+          <p>この仕組みはブラウザ側（JavaScript）で動くため、<strong>サーバー上のファイルそのものは残ります</strong>。アップロードした元ファイルまで完全に消したい場合は、下のコマンドでサイトごと削除してください。</p>
+        </div>
+        <pre><code>surge teardown 好きな名前.surge.sh</code></pre>
+
+        <h3>サーバー上のファイルも全自動で削除する（GitHub Actions）</h3>
+        <p>上のコマンドを3週間後に<strong>自動で実行</strong>したい場合は、同梱の <code class="inline">.github/workflows/auto-teardown.yml</code> を使います。毎日チェックし、期限が過ぎたら自動でサイトを削除します。</p>
+        <ol class="bullets">
+          <li>手元で <code class="inline">surge token</code> を実行してトークンを取得</li>
+          <li>GitHubの <strong>Settings → Secrets and variables → Actions</strong> で、Secrets に <code class="inline">SURGE_LOGIN</code>（メール）と <code class="inline">SURGE_TOKEN</code>（トークン）を登録</li>
+          <li>ワークフロー上部の <code class="inline">SURGE_DOMAIN</code> / <code class="inline">PUBLISH_DATE</code> を自分の値に編集</li>
+          <li>このファイルを<strong>デフォルトブランチ（main）</strong>に置く（スケジュール実行はmain上でのみ動作）</li>
+        </ol>
+        <div class="callout">
+          <span class="ico">🤖</span>
+          <p>未設定のときは何もせず安全にスキップします。GitHubの「Actions」タブから手動実行（<code class="inline">workflow_dispatch</code>）して動作確認もできます。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- カスタマイズ -->
+    <section class="section">
+      <div class="container">
+        <p class="section-label">Customize</p>
+        <h2>もっとカスタマイズしたい人へ</h2>
+        <h3>テーマカラーを変える</h3>
+        <p><code class="inline">style.css</code> の先頭にある <code class="inline">:root</code> の色コードを書き換えると、サイト全体の色が一括で変わります。</p>
+        <pre><code>:root {
+  --green: <span class="tok">#2a9d5c</span>;       <span class="cmt">← メインカラー</span>
+  --green-light: <span class="tok">#e8f5ee</span>; <span class="cmt">← 薄い背景色</span>
+  --green-dark: <span class="tok">#1e7a45</span>;  <span class="cmt">← ホバー時の濃い色</span>
+}</code></pre>
+        <p>好きな色は <a href="https://coolors.co/" target="_blank" rel="noopener">Coolors</a> などで探せます。3色をまとめて変えると統一感が出ます。</p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="container">
+        <p class="section-label">FAQ</p>
+        <h2>よくある質問・トラブル</h2>
+
+        <h3>Q. <code class="inline">surge: command not found</code> と出る</h3>
+        <p>surge がインストールされていません。<code class="inline">npm install --global surge</code> を実行してください。それでもダメな場合は Node.js が入っているか <code class="inline">node -v</code> で確認します。</p>
+
+        <h3>Q. 画像が表示されない</h3>
+        <p>ファイル名の打ち間違い（大文字小文字も区別されます）か、<code class="inline">images</code> フォルダの外に画像がある可能性が高いです。<code class="inline">src="images/ファイル名"</code> とフォルダ・名前が一致しているか確認しましょう。</p>
+
+        <h3>Q. 公開したサイトを消したい</h3>
+        <p><code class="inline">surge teardown 好きな名前.surge.sh</code> で削除できます。</p>
+
+        <h3>Q. お金はかかる？</h3>
+        <p>surge.sh の基本機能は無料です。Node.js・VS Code・Googleフォームもすべて無料で使えます。</p>
+
+        <h3>Q. もっと本格的に運用したい</h3>
+        <p>独自ドメインや GitHub 連携をしたい場合は、<a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a> や <a href="https://www.netlify.com/" target="_blank" rel="noopener">Netlify</a>、<a href="https://vercel.com/" target="_blank" rel="noopener">Vercel</a> も同じファイルのまま公開できます。</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p><strong>ポートフォリオサイト構築マニュアル</strong></p>
+    <p>このテンプレートは自由に改変・利用できます。あなただけのサイトを作ってみてください。</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360">
+  <rect width="640" height="360" fill="#f3f4f6"/>
+  <rect x="1" y="1" width="638" height="358" fill="none" stroke="#2a9d5c" stroke-width="2" stroke-dasharray="8 8" opacity="0.5"/>
+  <circle cx="320" cy="150" r="46" fill="none" stroke="#2a9d5c" stroke-width="3" opacity="0.6"/>
+  <path d="M300 150l14 14 26-30" fill="none" stroke="#2a9d5c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+  <text x="320" y="238" font-family="'Inter',sans-serif" font-size="26" font-weight="700" fill="#2a9d5c" text-anchor="middle">PROJECT 2</text>
+  <text x="320" y="268" font-family="'Noto Sans JP',sans-serif" font-size="15" fill="#9ca3af" text-anchor="middle">実績画像をここに差し替え</text>
+</svg>
