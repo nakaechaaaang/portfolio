@@ -270,37 +270,43 @@
           <p>仕組み：<strong>ブラウザで録画 → 64MB分割で Worker にアップロード → R2 に保存</strong>。視聴ページは Worker から <strong>Range対応（途中再生OK）</strong>で動画を配信します。2時間級の長尺を“無料”で成立させる構成です。</p>
         </div>
 
-        <h3>必要なもの</h3>
-        <ul class="dots">
-          <li><strong>Cloudflareアカウント</strong>（無料）… R2ストレージ＋Worker に使用</li>
-          <li><strong>Node.js</strong> と <strong>wrangler</strong>（Cloudflareのコマンドツール）</li>
-          <li><strong>surgeアカウント</strong> … フロント（録画・視聴ページ）の公開用</li>
-        </ul>
+        <h3>手順（ゼロから）</h3>
 
-        <h3>手順</h3>
         <div class="step"><div class="n">1</div><div class="b">
-          <h3>R2バケットを作る</h3>
-          <p>Cloudflare で R2 を有効化し、保存用バケットを作成します（名前は任意。例：<code>sakureco</code>）。R2は<strong>10GB無料・配信転送量も無料</strong>なので、長尺でもコストが出にくいのがポイントです。</p>
+          <h3>Cloudflareにサインアップ（無料）</h3>
+          <p><a href="https://dash.cloudflare.com/sign-up" target="_blank" rel="noopener">dash.cloudflare.com/sign-up</a> でメールアドレスとパスワードを入力 → 届いた確認メールのリンクで認証します。<strong>ドメイン購入などは不要</strong>です。</p>
         </div></div>
 
         <div class="step"><div class="n">2</div><div class="b">
-          <h3>Worker（保存・配信サーバー）をデプロイ</h3>
-          <p>Worker は「録画ファイルを64MB分割で受け取って R2 に保存」「<code>/file/</code> で Range対応配信」を担当します。R2バケットを Worker にバインドして、<code>wrangler deploy</code> で公開します。</p>
-          <p>デプロイ後、配信URLは <code>https://&lt;あなたのWorker&gt;.workers.dev/file/rec/…</code> の形になります。</p>
+          <h3>R2を有効化してバケットを作る</h3>
+          <p>ダッシュボード左の <strong>「R2」</strong> →「Purchase R2 Plan / R2を始める」で有効化 → <strong>「Create bucket」</strong>で保存用バケットを作成（名前は任意。例：<code>sakureco</code>）。R2は<strong>10GB無料・配信転送量も無料</strong>です。</p>
+          <div class="note warn"><span class="ic">💳</span><p>R2の有効化時に<strong>クレジットカードの登録を求められます</strong>。無料枠（10GB・転送量0円）の範囲なら請求は発生しませんが、<strong>カード登録自体は必須</strong>です（初見でつまずきやすいポイント）。</p></div>
         </div></div>
 
         <div class="step"><div class="n">3</div><div class="b">
+          <h3>操作ツール（wrangler）を準備</h3>
+          <p>Node.js（<a href="https://nodejs.org/" target="_blank" rel="noopener">nodejs.org</a> の「LTS」）を入れたら、ターミナルで：</p>
+          <p><code>npm install -g wrangler</code><br>
+          <code>wrangler login</code> … ブラウザが開くので「Allow」で連携</p>
+        </div></div>
+
+        <div class="step"><div class="n">4</div><div class="b">
+          <h3>Worker（保存・配信サーバー）をデプロイ</h3>
+          <p>Worker は「録画ファイルを64MB分割で受け取って R2 に保存」「<code>/file/</code> で Range対応配信」を担当します。R2バケットを Worker にバインドして <code>wrangler deploy</code> で公開。デプロイ後、配信URLは <code>https://&lt;あなたのWorker&gt;.workers.dev/file/rec/…</code> の形になります。</p>
+        </div></div>
+
+        <div class="step"><div class="n">5</div><div class="b">
           <h3>フロントに自分のWorker URLを設定</h3>
           <p>録画ページ（<code>index.html</code>）の<strong>アップロード先</strong>と、視聴ページ（<code>watch.html</code>）が<strong>許可する配信ホスト</strong>を、自分のWorker URLに合わせます。視聴ページは「自分のWorkerホスト＋ <code>/file/rec/</code> 以外のURLを拒否」する作りなので、ここを自分のドメインにするのが安全上のキモです。</p>
         </div></div>
 
-        <div class="step"><div class="n">4</div><div class="b">
+        <div class="step"><div class="n">6</div><div class="b">
           <h3>フロントを surge で公開</h3>
           <p>録画・視聴ページのフォルダで公開します。<br>
           <code>surge ./ &lt;あなたの名前&gt;.surge.sh</code></p>
         </div></div>
 
-        <div class="step"><div class="n">5</div><div class="b">
+        <div class="step"><div class="n">7</div><div class="b">
           <h3>運用：容量の管理</h3>
           <p>標準画質で2時間 ≈ 2.3GB → 10GB で<strong>約4本</strong>が目安。いっぱいになったら古いものから削除します。</p>
           <p>一覧：<code>wrangler r2 object list &lt;バケット名&gt;</code><br>
