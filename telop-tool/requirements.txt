@@ -1,0 +1,14 @@
+# フルテロップ自動化パイプライン 依存ライブラリ
+#
+# WhisperX = faster-whisper（高速文字起こし）＋ wav2vec2 強制アライメント。
+# この「強制アライメント」が、字幕が音声からズレない核心です。
+#   https://github.com/m-bain/whisperX  (★21.8k)
+#
+# インストール例（Mac / Python 3.10〜3.11 推奨）:
+#   python -m venv .venv && source .venv/bin/activate
+#   pip install -r requirements.txt
+#
+# ※ ffmpeg は別途インストールが必要です（音声抽出・テロップ焼き込みに使用）:
+#   macOS:  brew install ffmpeg
+
+whisperx>=3.1.1

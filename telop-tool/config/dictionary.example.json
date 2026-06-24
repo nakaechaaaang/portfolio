@@ -1,0 +1,22 @@
+{
+  "_comment": "案件ごとに育てる辞書。proper_nouns は Whisper に固有名詞を教えるヒント、corrections は確定した誤変換を機械置換します。これをコピーして dictionary.json を作ってください。",
+
+  "proper_nouns": [
+    "Claude Code",
+    "Premiere Pro",
+    "Whisper",
+    "テロップ",
+    "プレビュー"
+  ],
+
+  "corrections": [
+    { "from": "PR", "to": "PC", "_note": "例: PR→PC の誤変換" },
+    { "from": "すぐ場", "to": "その場" },
+    { "from": "クロードコード", "to": "Claude Code" }
+  ],
+
+  "filler_candidates": [
+    "えー", "えーと", "えっと", "あのー", "あの", "うー", "うーん",
+    "まあ", "なんか", "その", "ええと", "ね", "はい"
+  ]
+}
