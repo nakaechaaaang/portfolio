@@ -1,4 +1,4 @@
-"""設定値と辞書の読み込み。"""
+"""設定値・プリセット・辞書の読み込み。"""
 from __future__ import annotations
 
 import json
@@ -28,18 +28,48 @@ DEFAULTS = {
 
     # SRT 生成時に取り除く句読点・記号
     "strip_punctuation": "。、，．・「」『』（）()！？!?…：:；;　",
-
-    # 青テロップ焼き込み（ffmpeg subtitles の force_style）
-    # ASS 色は &HAABBGGRR（AA=透明度, BB=青, GG=緑, RR=赤）。
-    # 既定: 青文字＋白フチ。色を変えたいときはここを編集。
-    "burn_style": (
-        "FontName=Hiragino Sans,Fontsize=18,Bold=1,"
-        "PrimaryColour=&H00FF0000&,"      # 文字色=青
-        "OutlineColour=&H00FFFFFF&,"      # フチ=白
-        "BorderStyle=1,Outline=2,Shadow=0,"
-        "Alignment=2,MarginV=48"          # 下中央
-    ),
 }
+
+
+# ---- 用途別プリセット ----
+# 「default」… 横YouTube・セミナー用（青テロップ／画面下中央）
+# 「short」  … 縦ショート用（白＋黒フチ・大きめ・1行15文字で改行）
+#
+# burn_style は ffmpeg subtitles の force_style 文字列。
+# ASS色は &HAABBGGRR（AA=透明度, BB=青, GG=緑, RR=赤）。
+# Alignment: 1=左下, 2=中央下, 3=右下, 5=中央, 8=中央上
+PRESETS = {
+    "default": {
+        "label": "横動画（青テロップ／画面下）",
+        "wrap_chars": 0,           # 0 = 改行しない
+        "burn_style": (
+            "FontName=Hiragino Sans,Fontsize=18,Bold=1,"
+            "PrimaryColour=&H00FF0000&,"     # 文字色=青
+            "OutlineColour=&H00FFFFFF&,"     # フチ=白
+            "BorderStyle=1,Outline=2,Shadow=0,"
+            "Alignment=2,MarginV=48"
+        ),
+    },
+    "short": {
+        "label": "縦ショート（白＋黒フチ・大きめ）",
+        "wrap_chars": 15,          # 1行15文字で自動改行（縦動画でハミ出さない）
+        "burn_style": (
+            "FontName=Hiragino Sans W7,Fontsize=22,Bold=1,"
+            "PrimaryColour=&H00FFFFFF&,"     # 文字色=白
+            "OutlineColour=&H00000000&,"     # フチ=黒
+            "BorderStyle=1,Outline=3,Shadow=0,"
+            "Alignment=2,MarginV=110"        # 縦動画の下から少し上（顔の下くらい）
+        ),
+    },
+}
+
+
+def preset(name: str) -> dict:
+    if name not in PRESETS:
+        raise ValueError(
+            f"未知のプリセット: {name!r}（使えるのは: {list(PRESETS)}）"
+        )
+    return PRESETS[name]
 
 
 @dataclass
